@@ -1,0 +1,7 @@
+{
+    "API_TOKEN": "<-TELEGRAM-API-TOKEN->",
+    "ADMIN_ID": 1122334455,
+    "HELLO_ADMIN": "Hello, Admin!",
+    "HELLO_CHAT": "Welcome to feedback bot",
+    "NO_REPLY_MESSAGE": "‼️‼️ You should reply a message ‼️‼️"
+}
