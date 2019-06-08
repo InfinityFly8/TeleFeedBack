@@ -1,7 +1,7 @@
 # TeleFeedBack
 ## Simple Telegram bot for feeedback
 
-First you most install `pyTelegramBotAPI` library. Command:
+First you should install `pyTelegramBotAPI` library. Command:
 ```bash
 pip install pyTelegramBotAPI
 ```
