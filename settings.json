@@ -3,6 +3,6 @@
     "ADMIN_ID": 1122334455,
     "HELLO_ADMIN": "Hello, Admin!",
     "HELLO_CHAT": "Welcome to feedback bot",
-    "NO_REPLY_MESSAGE": "‼‼ You should reply a message ‼‼",
-    "UNSUPPORTED_TYPE": "‼‼ Bot does not support this type of message ‼‼"
+    "NO_REPLY_MESSAGE": ":bangbang::bangbang: You should reply a message :bangbang::bangbang:",
+    "UNSUPPORTED_TYPE": ":bangbang::bangbang: Bot does not support this type of message :bangbang::bangbang:"
 }

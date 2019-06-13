@@ -2,6 +2,7 @@ import logging
 import json
 from types import SimpleNamespace
 
+import emoji
 import telebot
 from telebot import types
 
@@ -55,7 +56,8 @@ def send_message_content(id, message):
     elif message.content_type == 'invoice':
         bot.send_invoice(id, message.invoice.file_id)
     else:
-        bot.send_message(admin_id, settings.UNSUPPORTED_TYPE,)
+        # use emoji library
+        bot.send_message(admin_id, emoji.emojize(settings.UNSUPPORTED_TYPE, use_aliases=True))
     
 
 @bot.message_handler(commands=['start', 'help'])
@@ -75,7 +77,8 @@ def handle_admin_messages(message):
     if message.reply_to_message is None:
         try:
             logger.info('No reply')
-            bot.send_message(admin_id, settings.NO_REPLY_MESSAGE)
+            # use emoji library
+            bot.send_message(admin_id, emoji.emojize(settings.NO_REPLY_MESSAGE, use_aliases=True))
         except:
             logger.exception('Sending Error')
         return
