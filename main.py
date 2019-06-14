@@ -21,12 +21,19 @@ bot_info = '\n' + '\n'.join(f"{(k+':').ljust(14)}  {v}" for k, v in
                             bot.get_me().__dict__.items())
 logger.info(bot_info)
 
-
+# helper snippets
 class AllTypes:
     def __contains__(*args):
         return True
 
+def is_admin(message):
+    return message.from_user.id == admin_id
 
+def is_not_admin(message):
+    return message.from_user.id != admin_id
+
+
+#resend any message to id
 def send_message_content(id, message):
     # text, audio, document, photo, sticker, video, video_note, voice, invoice
     if message.content_type == 'text':
@@ -60,6 +67,7 @@ def send_message_content(id, message):
         bot.send_message(admin_id, emoji.emojize(settings.UNSUPPORTED_TYPE, use_aliases=True))
     
 
+# commands handlers
 @bot.message_handler(commands=['start', 'help'])
 def hello(message):
     try:
@@ -71,7 +79,8 @@ def hello(message):
         logger.exception('Sending Error!')
 
 
-@bot.message_handler(func=lambda mess: mess.from_user.id == admin_id, content_types=AllTypes())
+# handle messages from admin and send it to replyed user
+@bot.message_handler(func=is_admin, content_types=AllTypes())
 def handle_admin_messages(message):
     logger.info('New message from admin')
     if message.reply_to_message is None:
@@ -89,7 +98,9 @@ def handle_admin_messages(message):
     except:
         logger.exception('Replying Error!')
 
-@bot.message_handler(func=lambda mess: mess.from_user.id != admin_id, content_types=AllTypes())
+
+# handle messages from anyone and send it to admin
+@bot.message_handler(func=is_not_admin, content_types=AllTypes())
 def handle_other_messages(message):
     logger.info('New message')
     try:
