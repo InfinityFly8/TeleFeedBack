@@ -1,14 +1,10 @@
 import logging
-import json
-from types import SimpleNamespace
 
 import emoji
 import telebot
 from telebot import types
 
-with open('settings.json') as file:
-    settings = SimpleNamespace(**json.load(file))
-admin_id = settings.ADMIN_ID
+from parameters import settings, banlist
 bot = telebot.TeleBot(settings.API_TOKEN)
 
 #logging init
