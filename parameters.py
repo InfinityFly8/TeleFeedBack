@@ -46,7 +46,7 @@ class Banlist:
             return True
         return False
     
-    def remove(value: int):
+    def remove(self, value: int):
         # Type Check
         value = int(value)
         if value in self._banlist:
