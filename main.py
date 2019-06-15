@@ -61,8 +61,7 @@ def send_message_content(id, message):
     elif message.content_type == 'invoice':
         bot.send_invoice(id, message.invoice.file_id)
     else:
-        # use emoji library
-        bot.send_message(admin_id, emoji.emojize(settings.UNSUPPORTED_TYPE, use_aliases=True))
+        bot.send_message(admin_id, settings.UNSUPPORTED_TYPE)
     
 
 # commands handlers
@@ -84,8 +83,7 @@ def handle_admin_messages(message):
     if message.reply_to_message is None:
         try:
             logger.info('No reply')
-            # use emoji library
-            bot.send_message(admin_id, emoji.emojize(settings.NO_REPLY_MESSAGE, use_aliases=True))
+            bot.send_message(admin_id, settings.NO_REPLY_MESSAGE)
         except:
             logger.exception('Sending Error')
         return

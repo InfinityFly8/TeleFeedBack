@@ -3,6 +3,8 @@ import json
 from contextlib import suppress
 from types import SimpleNamespace
 
+import emoji
+
 logging.basicConfig()
 settings_logger = logging.getLogger('settings_log')
 settings_logger.setLevel(logging.WARN)
@@ -14,6 +16,8 @@ def dict_to_object(dict_: dict):
     for key, value in dict_.items():
         if isinstance(value, dict):
             value = dict_to_object(value)
+        if isinstance(value, str):
+            value = emoji.emojize(value, use_aliases=True)
         obj[key] = value
     return SimpleNamespace(**obj)
 

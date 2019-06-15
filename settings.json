@@ -4,5 +4,7 @@
     "HELLO_ADMIN": "Hello, Admin!",
     "HELLO_CHAT": "Welcome to feedback bot",
     "NO_REPLY_MESSAGE": ":bangbang::bangbang: You should reply a message :bangbang::bangbang:",
-    "UNSUPPORTED_TYPE": ":bangbang::bangbang: Bot does not support this type of message :bangbang::bangbang:"
+    "UNSUPPORTED_TYPE": ":bangbang::bangbang: Bot does not support this type of message :bangbang::bangbang:",
+    "NOT_A_NUMBER": ":bangbang::bangbang: You must send a number :bangbang::bangbang:",
+    "TOO_SMALL_NUMBER": ":bangbang::bangbang: Your number should be greater than %s minutes :bangbang::bangbang: "
 }
