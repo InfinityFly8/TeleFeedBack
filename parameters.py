@@ -9,6 +9,7 @@ settings_logger.setLevel(logging.WARN)
 
 
 def dict_to_object(dict_: dict):
+    '''converts dict to object with recursion'''
     obj = {}
     for key, value in dict_.items():
         if isinstance(value, dict):
@@ -16,9 +17,6 @@ def dict_to_object(dict_: dict):
         obj[key] = value
     return SimpleNamespace(**obj)
 
-
-with open('settings.json') as file:
-    settings = dict_to_object(json.load(file))
 
 class Banlist:
     def __init__(self):
@@ -56,4 +54,7 @@ class Banlist:
     def __contains__(self, value):
         return int(value) in self._banlist
 
+
+with open('settings.json') as file:
+    settings = dict_to_object(json.load(file))
 banlist = Banlist()

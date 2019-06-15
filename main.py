@@ -5,6 +5,8 @@ import telebot
 from telebot import types
 
 from parameters import settings, banlist
+admin_id = settings.ADMIN_ID
+
 bot = telebot.TeleBot(settings.API_TOKEN)
 
 #logging init
