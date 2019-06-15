@@ -28,7 +28,8 @@ def is_admin(message):
     return message.from_user.id == admin_id
 
 def is_not_admin(message):
-    return message.from_user.id != admin_id
+    id = message.from_user.id
+    return id != admin_id and id not in banlist
 
 
 #resend any message to id
@@ -76,6 +77,25 @@ def hello(message):
         logger.exception('Sending Error!')
 
 
+@bot.message_handler(commands=['ban'], func=is_admin)
+def ban_user(message):
+    if message.reply_to_message is None:
+        try:
+            logger.info('No reply')
+            bot.send_message(admin_id, settings.NO_REPLY_MESSAGE)
+        except:
+            logger.exception('Sending Error')
+        return
+    try:
+        id = message.reply_to_message.forward_from.id
+        logger.info('User %s banned' % id)
+        banlist.add(id)
+        bot.send_message(admin_id, settings.USER_IS_BANNED)
+        bot.send_message(id, settings.YOU_ARE_BANNED)
+    except:
+        logger.exception('Banning error')
+
+
 # handle messages from admin and send it to replyed user
 @bot.message_handler(func=is_admin, content_types=AllTypes())
 def handle_admin_messages(message):
@@ -89,7 +109,10 @@ def handle_admin_messages(message):
         return
     try:
         chat_id = message.reply_to_message.forward_from.id
-        send_message_content(chat_id, message)
+        if chat_id in banlist:
+            bot.send_message(admin_id, settings.USER_IS_BANNED)
+        else:
+            send_message_content(chat_id, message)
         logger.info('Send message to user')
     except:
         logger.exception('Replying Error!')
