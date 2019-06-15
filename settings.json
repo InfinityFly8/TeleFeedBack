@@ -4,5 +4,7 @@
     "HELLO_ADMIN": "Hello, Admin!",
     "HELLO_CHAT": "Welcome to feedback bot",
     "NO_REPLY_MESSAGE": ":bangbang::bangbang: You should reply a message :bangbang::bangbang:",
-    "UNSUPPORTED_TYPE": ":bangbang::bangbang: Bot does not support this type of message :bangbang::bangbang:"
+    "UNSUPPORTED_TYPE": ":bangbang::bangbang: Bot does not support this type of message :bangbang::bangbang:",
+    "USER_IS_BANNED": ":bangbang::bangbang: User is banned :bangbang::bangbang:",
+    "YOU_ARE_BANNED": ":bangbang::bangbang: You are banned :bangbang::bangbang:"
 }
