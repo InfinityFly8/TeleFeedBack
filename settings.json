@@ -1,4 +1,5 @@
 {
+    "DB_ACCESS": "sqlite:///datatable.db",
     "API_TOKEN": "<-TELEGRAM-API-TOKEN->",
     "ADMIN_ID": 1122334455,
     "HELLO_ADMIN": "Hello, Admin!",
