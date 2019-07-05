@@ -2,8 +2,11 @@ import logging
 import json
 from contextlib import suppress
 from types import SimpleNamespace
-
 import emoji
+
+#logging init
+logger = logging.getLogger('feedback bot')
+logger.setLevel(logging.INFO)
 
 logging.basicConfig()
 settings_logger = logging.getLogger('settings_log')
@@ -59,6 +62,7 @@ class Banlist:
         return int(value) in self._banlist
 
 
+#loading parameters...
 with open('settings.json') as file:
     settings = dict_to_object(json.load(file))
 banlist = Banlist()
