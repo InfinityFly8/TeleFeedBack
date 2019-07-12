@@ -1,5 +1,6 @@
 {
     "DB_ACCESS": "sqlite:///datatable.db",
+    "DELETE_DELAY": 1209600,
     "API_TOKEN": "<-TELEGRAM-API-TOKEN->",
     "ADMIN_ID": 1122334455,
     "HELLO_ADMIN": "Hello, Admin!",
