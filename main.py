@@ -3,13 +3,16 @@ import logging
 import emoji
 import aiogram
 from aiogram import executor, types, Bot, Dispatcher
-from parameters import logger, settings, banlist
+from parameters import logger, settings
+from db_control import Banlist, IdManager
 from utils import log_bot_info, AllTypes, is_admin, is_not_admin, send_message_content
 
 
 ADMIN_ID = settings.ADMIN_ID
 bot = Bot(settings.API_TOKEN)
 dp = Dispatcher(bot)
+banlist = Banlist()
+id_manager = IdManager()
 
 asyncio.gather(log_bot_info(bot))
 
@@ -36,7 +39,7 @@ async def ban_user(message):
             logger.exception('Sending Error')
         return
     try:
-        id = message.reply_to_message.forward_from.id
+        id = id_manager.get_chat_id(message.message_id)
         logger.info('User %s banned' % id)
         banlist.add(id)
         await bot.send_message(ADMIN_ID, settings.USER_IS_BANNED)
@@ -73,7 +76,9 @@ async def handle_admin_messages(message):
 async def handle_other_messages(message):
     logger.info('New message')
     try:
-        await bot.forward_message(ADMIN_ID, message.chat.id, message.message_id)
+        new_mess = await bot.forward_message(ADMIN_ID, message.chat.id, message.message_id)
+        id_manager.add_id_pair(new_mess.message_id, new_mess.chat.id)
+
         logger.info('Send message to admin')
     except:
         logger.exception('Forwarding Error!')

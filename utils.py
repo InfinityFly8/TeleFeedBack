@@ -1,7 +1,9 @@
 from aiogram import Bot, types
-from parameters import banlist, logger, settings
+from parameters import logger, settings
+from db_control import Banlist
 ADMIN_ID = settings.ADMIN_ID
 
+banlist = Banlist()
 
 # logs info about the bot
 async def log_bot_info(bot: Bot):
