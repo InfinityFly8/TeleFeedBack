@@ -1,23 +1,42 @@
 # TeleFeedBack
-## Simple Telegram bot for feeedback
 
-First you should install `pyTelegramBotAPI` library. Command:
+## Simple Telegram bot for feedback
+
+### Setting up
+
+After the repository cloning you must install the project libraries. Command:
+
 ```bash
-pip install pyTelegramBotAPI
+pip install -r requirements.txt
 ```
 
-Next edit `settings.json` file. Set your bot API_TOKEN and bot owned's Telegram ID. Result should like a:
+You must edit the `settings.json` file.
+
 ```json
 {
-    "API_TOKEN": "123456789:Your1234api12345token122345",
-    "ADMIN_ID": 12121212,
+    "DB_ACCESS": "sqlite:///datatable.db",
+    "DELETE_DELAY": 1209600,
+    "API_TOKEN": "<-TELEGRAM-API-TOKEN->",
+    "ADMIN_ID": 1122334455,
     "HELLO_ADMIN": "Hello, Admin!",
     "HELLO_CHAT": "Welcome to feedback bot",
-    "NO_REPLY_MESSAGE": "‼️‼️ You should reply a message ‼️‼️"
+    "NO_REPLY_MESSAGE": ":bangbang::bangbang: You should reply a message :bangbang::bangbang:",
+    "UNSUPPORTED_TYPE": ":bangbang::bangbang: Bot does not support this type of message :bangbang::bangbang:",
+    "USER_IS_BANNED": ":bangbang::bangbang: User is banned :bangbang::bangbang:",
+    "YOU_ARE_BANNED": ":bangbang::bangbang: You are banned :bangbang::bangbang:"
 }
 ```
-If you need to edit the messages, no problem!
-Next start the bot with command:
+
+- `DB_ACCESS`: it's a connection string for SQLAlchemy. Sqlite by default.  
+- `DELETE_DELAY`: it's a delay in deleting message information from database. 2 weeks by default.  
+- `API_TOKEN`: it's a telegram bot token. You must get it from `@BotFather`.  
+- `ADMIN_ID`: it's a bot owner's chat id.  
+- Then the messages that the bot sends. You can use `emoji` library here as in the example.
+
+### Running
+
+To run the bot you must command:
+
 ```bash
-python main.py
+python3 main.py
 ```
